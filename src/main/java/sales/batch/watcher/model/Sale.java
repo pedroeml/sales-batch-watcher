@@ -31,7 +31,7 @@ public class Sale {
     }
 
     public void setSalesman(Salesman salesman) {
-        if (salesman.getName().equals(this.getSalesmanName())) {
+        if (salesman != null && salesman.getName().equals(this.getSalesmanName())) {
             this.salesman = salesman;
         }
     }

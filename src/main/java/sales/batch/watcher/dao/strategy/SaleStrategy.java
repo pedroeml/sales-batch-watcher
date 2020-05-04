@@ -2,7 +2,6 @@ package sales.batch.watcher.dao.strategy;
 
 import sales.batch.watcher.model.Item;
 import sales.batch.watcher.model.Sale;
-import sales.batch.watcher.model.Salesman;
 
 import java.util.Arrays;
 import java.util.List;
