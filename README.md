@@ -6,7 +6,7 @@ This project was generated with Gradle 6.3. This application was developed with 
 
 ### Software
 
-Your need to have Gradle 6.3 and Java OpenJDK 14 installed to be able to run this project.
+You need to have Gradle 6.3 and Java OpenJDK 14 installed to be able to run this project.
 
 ### Environment
 
