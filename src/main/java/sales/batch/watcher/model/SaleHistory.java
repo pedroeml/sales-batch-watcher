@@ -54,6 +54,10 @@ public class SaleHistory {
         };
     }
 
+    public Salesman findSalesmanByCpf(String cpf) {
+        return this.salesmen.get(cpf);
+    }
+
     private Salesman findSalesmanByName(Sale sale, Collection<Salesman> salesmen) {
         for (Salesman salesman : salesmen) {
             if (sale.getSalesmanName().equals(salesman.getName())) {
