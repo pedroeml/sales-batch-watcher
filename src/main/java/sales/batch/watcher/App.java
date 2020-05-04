@@ -1,47 +1,40 @@
 package sales.batch.watcher;
 
-import sales.batch.watcher.business.SaleHistoryReport;
+import sales.batch.watcher.business.strategy.ReportProcessorStrategy;
+import sales.batch.watcher.business.strategy.SaleHistoryReportProcessorStrategy;
 import sales.batch.watcher.persistence.utils.DirectoryUtils;
-import sales.batch.watcher.persistence.dao.SaleHistoryDAO;
-import sales.batch.watcher.model.SaleHistory;
+import sales.batch.watcher.persistence.utils.WatchDir;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class App {
+    private final ReportProcessorStrategy strategy;
+
+    public App() {
+        this.strategy = new SaleHistoryReportProcessorStrategy();
+    }
 
     public static void main(String[] args) {
-        App.loadInputFiles();
-        App.watchNewFiles();
+        App app = new App();
+        app.loadInputFiles();
+        app.watchNewFiles();
     }
 
-    private static void watchNewFiles() {
-        // TODO: implementation
+    private void watchNewFiles() {
+        Path dir = Paths.get(DirectoryUtils.INPUT_PATH);
+        try {
+            WatchDir watch = new WatchDir(dir, this.strategy);
+            watch.processQueuedEvents();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void loadInputFiles() {
+    private void loadInputFiles() {
         List<String> inputFilesPaths = DirectoryUtils.listFilesInDir(DirectoryUtils.INPUT_PATH);
-        App.processUnprocessedFiles(inputFilesPaths);
-    }
-
-    private static void processUnprocessedFiles(List<String> inputFilesPaths) {
-        List<String> unprocessdFiles = DirectoryUtils.filterUnprocessedFiles(inputFilesPaths);
-        unprocessdFiles.forEach(App::processFile);
-    }
-
-    private static void processFile(String filePath) {
-        String outputFilePath = DirectoryUtils.renameInputPathToOutput(filePath);
-
-        System.out.println("INPUT FILE PATH: " + filePath);
-        System.out.println("OUTPUT FILE PATH: " + outputFilePath);
-
-        SaleHistoryDAO loader = new SaleHistoryDAO();
-        SaleHistory history = loader.process(filePath);
-
-        List<String> lines = SaleHistoryReport.generateReportLines(history);
-        lines.forEach(System.out::println);
-
-        DirectoryUtils.writeLinesToFile(outputFilePath, lines);
-
-        System.out.println();
+        this.strategy.processUnprocessedFiles(inputFilesPaths);
     }
 }
