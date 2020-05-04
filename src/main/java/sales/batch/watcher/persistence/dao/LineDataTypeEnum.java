@@ -1,4 +1,4 @@
-package sales.batch.watcher.dao;
+package sales.batch.watcher.persistence.dao;
 
 public enum LineDataTypeEnum {
     CLIENT("002"),

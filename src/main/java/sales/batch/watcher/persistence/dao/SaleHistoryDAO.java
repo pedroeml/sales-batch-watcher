@@ -1,6 +1,6 @@
-package sales.batch.watcher.dao;
+package sales.batch.watcher.persistence.dao;
 
-import sales.batch.watcher.dao.factory.DomainModelFactory;
+import sales.batch.watcher.persistence.dao.factory.DomainModelFactory;
 import sales.batch.watcher.model.SaleHistory;
 
 import java.io.IOException;

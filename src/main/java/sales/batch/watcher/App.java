@@ -1,8 +1,8 @@
 package sales.batch.watcher;
 
 import sales.batch.watcher.business.SaleHistoryReport;
-import sales.batch.watcher.dao.DirectoryUtils;
-import sales.batch.watcher.dao.SaleHistoryDAO;
+import sales.batch.watcher.persistence.utils.DirectoryUtils;
+import sales.batch.watcher.persistence.dao.SaleHistoryDAO;
 import sales.batch.watcher.model.SaleHistory;
 
 import java.util.List;
@@ -31,8 +31,8 @@ public class App {
     private static void processFile(String filePath) {
         String outputFilePath = DirectoryUtils.renameInputPathToOutput(filePath);
 
-        System.out.println("INPUT FILE NAME: " + filePath);
-        System.out.println("OUTPUT FILE NAME: " + outputFilePath);
+        System.out.println("INPUT FILE PATH: " + filePath);
+        System.out.println("OUTPUT FILE PATH: " + outputFilePath);
 
         SaleHistoryDAO loader = new SaleHistoryDAO();
         SaleHistory history = loader.process(filePath);

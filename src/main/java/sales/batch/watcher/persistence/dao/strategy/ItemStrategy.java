@@ -1,4 +1,4 @@
-package sales.batch.watcher.dao.strategy;
+package sales.batch.watcher.persistence.dao.strategy;
 
 import sales.batch.watcher.model.Item;
 

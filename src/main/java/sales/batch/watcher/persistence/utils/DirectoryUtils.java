@@ -1,4 +1,4 @@
-package sales.batch.watcher.dao;
+package sales.batch.watcher.persistence.utils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
