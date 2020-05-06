@@ -1,3 +1,5 @@
+![Java CI with Gradle](https://github.com/pedroeml/sales-batch-watcher/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 # sales-batch-watcher
 
 This project was generated with Gradle 6.3. This application was developed with Java OpenJDK 14.0.1.
